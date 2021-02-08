@@ -6,6 +6,8 @@ Current VRChat 1048 has garbled log files for strings like Player, Network etc..
 Also add "--enable-sdk-log-levels" in your launch options if it does not show player joins, and also extract video URL's that's being played in UDONWorld. As a extra bonus, I have been playing PyPy Justdance for a while, it will also show which player selected a song.
 
 The exe file is created with Pyinstaller using commandline "pyinstaller --onefile --runtime-tmpdir \%TEMP% vrc_log_viewer.py"
+#Binary
+https://github.com/ZuwaiiVR/vrc_log_viewer/releases
 #----------------
 
 ## これは何

@@ -4,9 +4,6 @@ import os
 import sys
 import re
 import yaml
-import codecs
-import winsound
-import keyboard
 import operator
 from os.path import dirname, exists
 

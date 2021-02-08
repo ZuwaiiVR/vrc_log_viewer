@@ -1,4 +1,12 @@
 # vrc_log_viewer
+Zuwaii Edit~
+I made a small modification in the code to allow saving/append to one file ("alllog.txt") everytime when you start up the program, aswell drop files onto the exe file will open the dropped log file.
+Current VRChat 1048 has garbled log files for strings like Player, Network etc.. the modified config only checks now for the strings after [x].
+
+Also add "--enable-sdk-log-levels" in your launch options if it does not show player joins, and also extract video URL's that's being played in UDONWorld. As a extra bonus, I have been playing PyPy Justdance for a while, it will also show which player selected a song.
+
+#----------------
+
 ## これは何
 - VRCのログを見たいときに使うやつ
 

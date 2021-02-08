@@ -3,16 +3,15 @@ import glob
 import os
 import sys
 import re
+import codecs
 import yaml
 import operator
 from os.path import dirname, exists
 
 justonce = False
-ripkip = False
 def tail(thefile, past):
     if not past:
         thefile.seek(0, 2)
-    sound = False
     while True:
         line = thefile.readline()
         if not line:

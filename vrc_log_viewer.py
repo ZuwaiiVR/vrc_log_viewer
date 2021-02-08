@@ -1,13 +1,21 @@
 import time
 import glob
 import os
+import sys
 import re
 import yaml
+import codecs
+import winsound
+import keyboard
+import operator
+from os.path import dirname, exists
 
-
+justonce = False
+ripkip = False
 def tail(thefile, past):
     if not past:
         thefile.seek(0, 2)
+    sound = False
     while True:
         line = thefile.readline()
         if not line:
@@ -21,6 +29,7 @@ def tail(thefile, past):
 if __name__ == "__main__":
     with open("config.yml", "r") as config:
         conf = yaml.load(config, Loader=yaml.SafeLoader)
+    print("VRC Log Viewer : Original https://github.com/27Cobalter/vrc_log_viewer/releases \r\n Edit ver : Zuwaii-")
     print("load config")
     reg = []
     for pattern in conf["reg"]:
@@ -33,11 +42,19 @@ if __name__ == "__main__":
         logfiles = glob.glob(vrcdir + "output_log_*.txt")
         logfiles.sort(key=os.path.getctime, reverse=True)
         logfile = logfiles[0]
+    if len(sys.argv) > 1:
+        path = sys.argv[1]
+        if exists(path):
+            logfile = path
 
     with open(logfile, "r", encoding="utf-8") as f:
         print("open logfile : ", logfile)
         loglines = tail(f, conf["past"])
-
+        if justonce == False:
+            justonce == True
+            f = codecs.open('alllog.txt','a+','utf-8')
+            f.write("-----------------------------------------------------------------------------reopened-----------------------------------------------------------\r\n")
+            f.close()
         for line in loglines:
             for pattern in reg:
                 match = pattern.match(line)
@@ -46,4 +63,7 @@ if __name__ == "__main__":
                 message = ""
                 for group in match.groups():
                     message = message + group + " "
-                print(message)
+                print(message) 
+                f = codecs.open('alllog.txt','a+','utf-8')
+                f.write("%s \r\n" % message)
+                f.close()
